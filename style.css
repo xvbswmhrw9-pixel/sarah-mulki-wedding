@@ -1,0 +1,89 @@
+/* Styling Dasar */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #f7f7f7; /* Ganti dengan warna tema Anda */
+}
+
+/* 1. PAGE AWAL (Landing Screen) */
+#landing-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000; /* Latar gelap saat belum dibuka */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 1s ease-out; /* Transisi saat menghilang */
+}
+.hidden {
+    display: none !important;
+}
+
+/* 2. OPENING PAGE (Transisi Gambar) */
+#opening-page {
+    /* Gunakan gambar sebagai background */
+    background-image: url('assets/images/cover-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    opacity: 0; /* Mulai dari 0, diubah ke 1 oleh JS setelah klik */
+    transition: opacity 2s ease-in-out; /* Transisi untuk gambar/opacity */
+}
+
+/* 3 & 4. PROFIL BRIDE/GROOM */
+.profile-photo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%; /* Membuat gambar bulat */
+    margin: 20px auto;
+}
+
+/* 6. COUNTING HOURS */
+#countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+.timer-box span {
+    display: block;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+/* 7. LOCATION */
+iframe {
+    max-width: 90%;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
+/* 9 & 10. GALLERY */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+    padding: 20px;
+}
+.gallery-grid img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Tambahkan styling untuk form RSVP, event-box, dan tombol */
+/* ... */
