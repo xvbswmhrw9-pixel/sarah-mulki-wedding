@@ -1,6 +1,49 @@
 // Tanggal Pernikahan: Sesuaikan dengan tanggal, bulan, tahun, dan waktu yang sebenarnya
 const weddingDate = new Date("Jan 12, 2026 08:00:00").getTime();
 
+// --- A. Fungsi Mengambil Nama Tamu dari URL ---
+function getGuestName() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let guestName = urlParams.get('to'); 
+    
+    // Ganti underscore (_) dengan spasi
+    if (guestName) {
+        guestName = guestName.replace(/_/g, ' ');
+    } else {
+        // Nama default jika tidak ada parameter 'to' di URL
+        guestName = "Tamu Undangan"; 
+    }
+    
+    // Tampilkan nama di Landing Screen
+    document.getElementById('guest-name-display').textContent = guestName;
+}
+getGuestName(); // Panggil fungsi saat script dimuat
+
+// --- B. Kontrol Page Awal (Open Invitations) ---
+document.getElementById('open-invitation-btn').addEventListener('click', function() {
+    const landingScreen = document.getElementById('landing-screen');
+    const mainContent = document.getElementById('main-content');
+    const openingPage = document.getElementById('opening-page');
+
+    // 1. Sembunyikan Landing Screen dengan transisi opacity
+    landingScreen.style.opacity = '0';
+    
+    setTimeout(() => {
+        landingScreen.style.display = 'none'; // Hilangkan display setelah transisi
+        mainContent.classList.remove('hidden');
+        
+        // 2. Tampilkan Opening Page dengan transisi Opacity
+        openingPage.style.opacity = '1';
+
+        // 3. Tambahkan sedikit delay lalu scroll ke konten utama untuk efek Cinematic Scroll
+        setTimeout(() => {
+            // Scroll ke bagian Opening Page
+            openingPage.scrollIntoView({ behavior: 'smooth' });
+        }, 500); 
+
+    }, 1000); // Durasi ini harus sesuai dengan transisi CSS pada landing-screen
+});
+
 // --- 1. Fungsi Hitungan Mundur (Counting Hours) ---
 function updateCountdown() {
     const now = new Date().getTime();
