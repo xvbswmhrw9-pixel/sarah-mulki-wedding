@@ -102,37 +102,62 @@
         </section>
 
         <section id="rsvp-section" class="section-content">
-            <h2>Kindly Confirm & Write Your Wishes For Us</h2>
+            <h2 class="section-title">Share Your Blessing</h2> 
+            <p class="section-subtitle">Kindly confirm & write your wishes for us</p>
 
-            <div class="event-box rsvp-box">
-                <h3>Formulir Konfirmasi Kehadiran (RSVP)</h3>
-                <form id="rsvp-form">
-                <label for="guest-name">Nama Anda:</label>
-                <input type="text" id="guest-name" name="name" required>
+            <div class="divider"></div> 
+            
+            <div class="event-box rsvp-form-container">
+            <form id="rsvp-form"> 
+                <div class="form-group">
+                    <label for="guest-name">Name</label>
+                    <input type="text" id="guest-name" name="entry.123456789" placeholder="Name" required> 
+                </div>
 
-                <label for="attendance">Konfirmasi Kehadiran:</label>
-                <select id="attendance" name="attendance" required>
-                    <option value="">Pilih Status</option>
-                    <option value="hadir">Hadir</option>
-                    <option value="tidak-hadir">Tidak Hadir</option>
-                </select>
+                <div class="form-group">
+                    <label for="attendance">Attendance</label>
+                    <select id="attendance" name="entry.987654321" required>
+                        <option value="">I'm planning to attend</option> <!-- Default placeholder --><option value="Hadir">I'm planning to attend</option> 
+                        <option value="Tidak Hadir">Can't attend</option>
+                        <!-- Anda bisa menambahkan opsi "Not sure" jika diinginkan --><!-- <option value="Belum Yakin">Not sure</option> --></select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="entry.112233445" rows="4" placeholder="Message"></textarea>
+                </div>
 
-                <label for="message">Pesan / Doa Terbaik:</label>
-                <textarea id="message" name="message" rows="4"></textarea>
-
-                <button type="submit" id="rsvp-submit-btn">Kirim Konfirmasi</button>
+                <div class="form-actions">
+                    <!-- Untuk "Sticker" dan "Cancel" akan membutuhkan logika JS yang lebih kompleks atau backend --><!-- Untuk saat ini, kita bisa placeholder atau hilangkan --><!-- <button type="button" class="btn-secondary">Sticker</button> --><!-- <button type="button" class="btn-secondary">Cancel</button> --><button type="submit" id="rsvp-submit-btn" class="btn-primary">Send ></button>
+                </div>
             </form>
-            <p id="rsvp-message" style="color: green; margin-top: 15px; display: none;">Terima kasih, konfirmasi Anda telah terkirim!</p>
-            </div>
+            <p id="rsvp-message" class="form-status-message" style="display: none;">Terima kasih, konfirmasi Anda telah terkirim!</p>
+        </div>
 
-            <div class="event-box guestbook-box">
-            <h3>Ucapan & Doa Terbaik</h3>
+        <!-- Bagian Ringkasan Kehadiran (Attendance Summary) --><div class="divider short"></div> <!-- Divider pendek sebelum ringkasan --><div class="attendance-summary-container">
+            <h3>Attendance</h3>
+            <div class="attendance-stats">
+                <div class="stat-item">
+                    <span id="stat-not-sure" class="stat-number">0</span>
+                    <span class="stat-label">Not sure</span>
+                </div>
+                <div class="stat-item">
+                    <span id="stat-attending" class="stat-number">0</span>
+                    <span class="stat-label">Planning to attend</span>
+                </div>
+                <div class="stat-item">
+                    <span id="stat-not-attending" class="stat-number">0</span>
+                    <span class="stat-label">Can't attend</span>
+                </div>
+            </div>
+        </div>
+        <div class="divider short"></div> <!-- Divider pendek setelah ringkasan --><!-- Kotak Event untuk Ucapan & Doa Terbaik (Guestbook) --><div class="event-box guestbook-box">
             <div id="guest-messages" class="message-list">
                 <p>Memuat pesan...</p>
+            </div>
+            <!-- Tombol muat ulang bisa tetap ada atau dihilangkan jika auto-refresh --><button id="load-messages-btn" class="secondary-btn" style="margin-top: 20px;">Muat Ulang Pesan</button>
+            <p class="note" style="font-size: 0.8em; opacity: 0.7;">Pesan yang baru dikirim akan muncul setelah dimuat ulang.</p>
         </div>
-        <button id="load-messages-btn" class="secondary-btn" style="margin-top: 20px;">Muat Ulang Pesan</button>
-        <p class="note" style="font-size: 0.8em; opacity: 0.7;">Pesan yang baru dikirim akan muncul setelah dimuat ulang.</p>
-    </div>
 </section>
 
     </main>
