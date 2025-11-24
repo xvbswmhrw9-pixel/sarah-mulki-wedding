@@ -9,7 +9,7 @@
     --color-accent: #A98E7B; /* Warna tema (emas/coklat muda) */
     --color-dark-text: #614051; /* Warna merah anggur atau coklat tua */
 }
-
+/* Pastikan scroll-behavior: smooth diterapkan pada elemen html */
 html {
     scroll-behavior: smooth;
 }
@@ -117,28 +117,6 @@ body {
     background-color: #927763;
 }
 
-/* Pastikan scroll-behavior: smooth diterapkan pada elemen html */
-html {
-    scroll-behavior: smooth;
-}
-/* Styling Dasar */
-body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    background-color: #000; /* Latar belakang gelap untuk kesan elegan */
-    color: #fff; /* Warna teks terang */
-    
-/* Style untuk setiap SECTION agar memiliki padding yang cukup */
-.section-content {
-    padding: 80px 20px;
-    min-height: 80vh; /* Agar setiap bagian cukup tinggi untuk transisi scroll */
-    background-color: #111; /* Warna latar belakang gelap untuk konten */
-    /* Tambahkan efek transisi atau animasi sederhana saat di-scroll jika diinginkan */
-    /* Contoh: opacity: 0; transition: opacity 1s ease-in-out; */
-}
-
 /* 2. OPENING PAGE (Efek Transisi/Parallax Ringan) */
 #opening-page {
     background-attachment: fixed; /* Kunci background agar terjadi efek parallax saat scroll */
@@ -155,20 +133,7 @@ body {
 button, a {
     transition: all 0.3s ease;
 }
-/* 1. PAGE AWAL (Landing Screen) */
-#landing-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000; /* Latar gelap saat belum dibuka */
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    transition: opacity 1s ease-out; /* Transisi saat menghilang */
+
 }
 .hidden {
     display: none !important;
