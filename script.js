@@ -44,6 +44,59 @@ document.getElementById('open-invitation-btn').addEventListener('click', functio
     }, 1000); // Durasi ini harus sesuai dengan transisi CSS pada landing-screen
 });
 
+// --- C. Penanganan RSVP (Pesan untuk Pengantin) ---
+
+// GANTI DENGAN URL ACTION DARI GOOGLE FORM ANDA (Langkah 1B)
+const GOOGLE_FORM_URL = "https://docs.google.com/spreadsheets/d/1l0nLOiHtBL3kghdpDHf-2peZDZCeSgg-way3mh3beAE/edit?gid=0#gid=0";
+
+document.getElementById('rsvp-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const form = this;
+    const submitBtn = document.getElementById('rsvp-submit-btn');
+    const statusMessage = document.getElementById('rsvp-message');
+
+    // Matikan tombol saat proses kirim
+    submitBtn.textContent = 'Mengirim...';
+    submitBtn.disabled = true;
+    statusMessage.style.display = 'none';
+
+    // Buat objek FormData
+    const formData = new FormData(form);
+
+    // Kirim data menggunakan Fetch API
+    fetch(GOOGLE_FORM_URL, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors' // Penting untuk menghindari CORS error karena kita mengirim ke domain lain
+    })
+    .then(response => {
+        // Karena mode 'no-cors', kita tidak bisa memeriksa status 200/OK secara langsung.
+        // Asumsi sukses jika tidak ada error jaringan.
+        
+        // Tampilkan pesan sukses
+        statusMessage.textContent = `Terima kasih, konfirmasi Anda telah terkirim!`;
+        statusMessage.style.display = 'block';
+        form.reset(); // Kosongkan form
+
+        // Kembalikan tombol ke kondisi awal setelah 3 detik
+        setTimeout(() => {
+            submitBtn.textContent = 'Kirim Konfirmasi';
+            submitBtn.disabled = false;
+        }, 3000); 
+    })
+    .catch(error => {
+        console.error('Error saat mengirim RSVP:', error);
+        statusMessage.textContent = 'Gagal mengirim konfirmasi. Silakan coba lagi.';
+        statusMessage.style.color = 'red';
+        statusMessage.style.display = 'block';
+
+        // Kembalikan tombol ke kondisi awal
+        submitBtn.textContent = 'Kirim Konfirmasi';
+        submitBtn.disabled = false;
+    });
+});
+
 // --- 1. Fungsi Hitungan Mundur (Counting Hours) ---
 function updateCountdown() {
     const now = new Date().getTime();
