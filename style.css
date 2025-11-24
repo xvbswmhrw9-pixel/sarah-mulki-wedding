@@ -1,3 +1,122 @@
+/* ---------------------------------------------------- */
+/* --- 1. GLOBAL STYLES & FONT IMPORT --- */
+/* ---------------------------------------------------- */
+
+/* Warna Krem yang Digunakan pada Bride/Groom Section */
+:root {
+    --color-cream: #f7f3ed;
+    --color-dark: #333;
+    --color-accent: #A98E7B; /* Warna tema (emas/coklat muda) */
+    --color-dark-text: #614051; /* Warna merah anggur atau coklat tua */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: var(--color-cream); /* UBAH: Latar belakang seluruh halaman menjadi krem */
+    color: var(--color-dark); /* UBAH: Warna teks default menjadi gelap */
+}
+
+/* ---------------------------------------------------- */
+/* --- 2. LAYOUT & SECTION STYLES --- */
+/* ---------------------------------------------------- */
+
+.section-content {
+    padding: 80px 20px;
+    min-height: 80vh; 
+    background-color: transparent; /* Pastikan section tidak override body color, biarkan transparan */
+    color: var(--color-dark); /* Pastikan teks gelap di latar krem */
+}
+
+/* 1. LANDING SCREEN (Latar belakang tetap gelap agar kontras saat membuka) */
+#landing-screen {
+    background-color: #000; 
+    color: #fff;
+    /* ... styling lainnya ... */
+}
+
+
+/* 2. OPENING PAGE (Jika memiliki background image, biarkan) */
+
+
+/* 3 & 4. COUPLE SECTION (Ini sudah krem, tapi kita pastikan warnanya) */
+#couple-section {
+    background-color: var(--color-cream); 
+    color: var(--color-dark); 
+    /* ... styling lainnya ... */
+}
+
+
+/* 5. JADWAL PERNIKAHAN, 6. COUNTING HOURS, dst. */
+/* Semua section kini akan mengikuti background body (krem) */
+#schedule-section, #countdown-section {
+    background-color: var(--color-cream); 
+    color: var(--color-dark);
+}
+
+
+/* 11. RSVP & GUESTBOOK (Kita ubah elemen container form dan guestbook menjadi warna kontras gelap) */
+
+/* UBAH: Container Formulir RSVP menjadi warna gelap agar menonjol di latar krem */
+.rsvp-form-container {
+    background-color: #f0f0f0; /* Kontras lebih terang dari latar krem, tapi tidak putih */
+    color: var(--color-dark);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Shadow lebih lembut */
+    border: 1px solid #ddd;
+}
+.rsvp-form-container input[type="text"], 
+.rsvp-form-container select, 
+.rsvp-form-container textarea {
+    border: 1px solid #ccc;
+    background-color: #fff; /* Input putih agar jelas */
+    color: var(--color-dark);
+}
+.rsvp-form-container input[type="text"]::placeholder,
+.rsvp-form-container textarea::placeholder {
+    color: #aaa;
+}
+
+/* UBAH: Attendance Stats */
+.attendance-stats {
+    color: var(--color-dark);
+}
+.stat-item {
+    background-color: #fff; /* Kotak statistik putih */
+    border: 1px solid #ddd;
+    box-shadow: none; 
+}
+.stat-number {
+    color: var(--color-dark-text); /* Warna angka tetap warna tema */
+}
+
+/* UBAH: Guestbook Box */
+.guestbook-box {
+    background-color: #fff; /* Kotak Guestbook putih */
+    border: 1px solid #ddd;
+    color: var(--color-dark);
+}
+.message-list {
+    border: 1px solid #eee;
+    background-color: #fcfcfc;
+}
+.message-item strong {
+    color: var(--color-accent); /* Warna nama pengirim */
+}
+
+/* Pastikan semua tombol memiliki warna tema */
+.btn-primary {
+    background-color: var(--color-accent);
+}
+.btn-primary:hover {
+    background-color: #927763;
+}
+
 /* Pastikan scroll-behavior: smooth diterapkan pada elemen html */
 html {
     scroll-behavior: smooth;
@@ -58,7 +177,7 @@ button, a {
 /* 2. OPENING PAGE (Transisi Gambar) */
 #opening-page {
     /* Gunakan gambar sebagai background */
-    background-image: url('assets/images/cover-bg.jpg');
+    background-image: url('assets/images/4.jpg');
     background-size: cover;
     background-position: center;
     height: 100vh;
