@@ -1,12 +1,41 @@
+/* Pastikan scroll-behavior: smooth diterapkan pada elemen html */
+html {
+    scroll-behavior: smooth;
+}
 /* Styling Dasar */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     text-align: center;
-    background-color: #f7f7f7; /* Ganti dengan warna tema Anda */
+    background-color: #000; /* Latar belakang gelap untuk kesan elegan */
+    color: #fff; /* Warna teks terang */
+    
+/* Style untuk setiap SECTION agar memiliki padding yang cukup */
+.section-content {
+    padding: 80px 20px;
+    min-height: 80vh; /* Agar setiap bagian cukup tinggi untuk transisi scroll */
+    background-color: #111; /* Warna latar belakang gelap untuk konten */
+    /* Tambahkan efek transisi atau animasi sederhana saat di-scroll jika diinginkan */
+    /* Contoh: opacity: 0; transition: opacity 1s ease-in-out; */
 }
 
+/* 2. OPENING PAGE (Efek Transisi/Parallax Ringan) */
+#opening-page {
+    background-attachment: fixed; /* Kunci background agar terjadi efek parallax saat scroll */
+    /* ... styling lainnya ... */
+}
+
+/* 6. COUNTING HOURS - Gaya Visual Baru */
+#countdown-section {
+    background-color: #0a0a0a; /* Kontras sedikit lebih gelap */
+    /* ... */
+}
+
+/* Tambahkan transisi halus pada elemen interaktif */
+button, a {
+    transition: all 0.3s ease;
+}
 /* 1. PAGE AWAL (Landing Screen) */
 #landing-screen {
     position: fixed;
