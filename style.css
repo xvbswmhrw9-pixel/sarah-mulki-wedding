@@ -72,12 +72,141 @@ button, a {
 }
 
 /* 3 & 4. PROFIL BRIDE/GROOM */
+#couple-section {
+    background-color: #f7f3ed; /* Latar belakang krem muda/vintage */
+    color: #333; /* Warna teks gelap */
+    padding: 100px 20px;
+    overflow-x: hidden; /* Penting untuk menghilangkan scrollbar saat elemen keluar */
+}
+
+.arabic-calligraphy {
+    font-size: 2em;
+    font-family: 'Times New Roman', serif; /* Ganti dengan font kaligrafi jika ada */
+    margin-bottom: 5px;
+}
+
+.invitation-text {
+    font-size: 1.1em;
+    margin-bottom: 60px;
+    font-style: italic;
+}
+
+/* Struktur Utama Card */
+.profile-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 900px;
+    margin: 60px auto;
+    gap: 50px; /* Jarak antara foto dan detail */
+}
+
+/* Detail Nama dan Orang Tua */
+.profile-details {
+    flex-basis: 40%;
+}
+.details-left {
+    text-align: right;
+}
+.details-right {
+    text-align: left;
+}
+
+.name-large {
+    font-family: 'Playfair Display', serif; /* Font dekoratif */
+    font-size: 2.5em;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    color: #614051; /* Warna merah anggur atau coklat tua */
+}
+
+.parents {
+    font-size: 0.9em;
+    line-height: 1.5;
+    opacity: 0.7;
+}
+
+/* Foto dengan Efek Polaroid (Frame) */
+.profile-photo-wrapper {
+    flex-basis: 40%;
+    position: relative;
+    padding: 15px 15px 40px 15px; /* Padding untuk frame polaroid */
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: rotate(2deg); /* Sedikit rotasi untuk efek artistik */
+}
+
 .profile-photo {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 50%; /* Membuat gambar bulat */
-    margin: 20px auto;
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: grayscale(100%); /* Efek hitam putih */
+}
+
+/* Ikon Pemisah */
+.separator-icon {
+    font-size: 2.5em;
+    color: #614051;
+    margin: 40px auto;
+    line-height: 0;
+}
+
+/* --- Animasi Slide-In Keyframes --- */
+
+/* Kondisi Awal (Tersembunyi) */
+.hidden-animate {
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Animasi Slide dari Kanan ke Kiri (Untuk Bride) */
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+/* Animasi Slide dari Kiri ke Kanan (Untuk Groom) */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Kelas yang Diaktifkan oleh JS saat elemen terlihat */
+.profile-card.visible[data-animate="slide-right"] {
+    animation: slideInRight 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+.profile-card.visible[data-animate="slide-left"] {
+    animation: slideInLeft 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+/* --- Media Queries untuk Responsif --- */
+@media (max-width: 768px) {
+    .profile-card {
+        flex-direction: column; /* Tumpuk vertikal di mobile */
+        text-align: center;
+        gap: 30px;
+    }
+    .profile-photo-wrapper {
+        transform: rotate(0deg); /* Hilangkan rotasi di mobile */
+    }
+    .profile-details, .profile-photo-wrapper {
+        flex-basis: 100%;
+    }
+    .details-left, .details-right {
+        text-align: center;
+    }
+}
 }
 
 /* 6. COUNTING HOURS */
