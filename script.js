@@ -168,6 +168,92 @@ document.getElementById('rsvp-form').addEventListener('submit', function(e) {
     // --- PENTING ---
     // Logika pengiriman data ke backend/service (Google Form/Sheets, Firebase, dll.) harus ditambahkan di sini.
     // GitHub Pages HANYA menyediakan hosting statis, tidak ada server-side scripting (PHP, Python) untuk memproses form.
+
+    // ... (Kode sebelumnya: GOOGLE_FORM_URL untuk pengiriman data tetap sama) ...
+
+// --- PENTING: GANTI DENGAN URL API/JSON PUBLIK GUESTBOOK ANDA ---
+const GUESTBOOK_API_URL = "https://script.google.com/macros/s/AKfycbxVhd_RWOR0iOuK-WUkCMzvTmCLqYlhJQTxsfCfd2CX_8paG4otM0k3lyGcOFzpaWJg/exec"; 
+// Pastikan URL ini mengembalikan array JSON dari data sheet Anda.
+
+// --- 5. Fungsi Memuat Pesan Tamu (Guestbook) ---
+function loadGuestMessages() {
+    const messageContainer = document.getElementById('guest-messages');
+    messageContainer.innerHTML = '<p>Sedang memuat pesan...</p>'; // Tampilkan status loading
+
+    // Lakukan fetching data dari API
+    fetch(GUESTBOOK_API_URL)
+        .then(response => {
+            if (!response.ok) {
+                // Tangani respons non-OK
+                throw new Error('Gagal memuat data dari API. Cek URL API Anda.');
+            }
+            return response.json();
+        })
+        .then(data => {
+            messageContainer.innerHTML = ''; // Kosongkan container
+            
+            // Pastikan 'data' adalah array
+            if (!Array.isArray(data) || data.length === 0) {
+                messageContainer.innerHTML = '<p>Belum ada ucapan dari tamu.</p>';
+                return;
+            }
+
+            // Urutkan data agar pesan terbaru muncul di atas (jika API tidak mengurutkan)
+            // Asumsi: pesan terbaru ada di akhir array, jadi kita gunakan reverse()
+            data.reverse(); 
+
+            // Iterate dan tampilkan setiap pesan
+            data.forEach(message => { 
+                // PERHATIAN: Sesuaikan KUNCI ini ('Nama Anda', 'Pesan / Doa Terbaik', 'Konfirmasi Kehadiran') 
+                // dengan header kolom di Google Sheet Anda
+                const senderName = message['Nama Anda'] || 'Anonim';
+                const content = message['Pesan / Doa Terbaik'] || 'Tidak ada pesan.';
+                const attendance = message['Konfirmasi Kehadiran'] || 'Status tidak diketahui';
+                
+                const messageHtml = `
+                    <div class="message-item">
+                        <strong>${senderName}</strong>
+                        <span class="attendance-status">(${attendance})</span>
+                        <p>${content}</p>
+                    </div>
+                `;
+                messageContainer.innerHTML += messageHtml;
+            });
+        })
+        .catch(error => {
+            console.error("Error memuat pesan:", error);
+            messageContainer.innerHTML = '<p style="color: red;">Maaf, gagal memuat pesan tamu. Cek koneksi API.</p>';
+        });
+}
+
+// Panggil fungsi saat tombol muat ulang diklik
+document.getElementById('load-messages-btn').addEventListener('click', loadGuestMessages);
+
+
+// Modifikasi Logic Pembukaan Undangan: Panggil loadGuestMessages() setelah undangan dibuka
+document.getElementById('open-invitation-btn').addEventListener('click', function() {
+    const landingScreen = document.getElementById('landing-screen');
+    const mainContent = document.getElementById('main-content');
+    const openingPage = document.getElementById('opening-page');
+
+    landingScreen.style.opacity = '0';
+    
+    setTimeout(() => {
+        landingScreen.style.display = 'none';
+        mainContent.classList.remove('hidden');
+        openingPage.style.opacity = '1';
+
+        setTimeout(() => {
+            openingPage.scrollIntoView({ behavior: 'smooth' });
+            // PANGGIL FUNGSI MUAT PESAN DI SINI
+            loadGuestMessages(); 
+        }, 500); 
+
+    }, 1000); 
+});
+
+// ... (Sisa kode JS lainnya: Countdown, RSVP form submission) ...
+    
     // Contoh Sederhana:
     console.log("Data RSVP yang dikirim:", data);
     alert(`Terima kasih, ${data.name}! Konfirmasi ${data.attendance} telah terkirim.`);
