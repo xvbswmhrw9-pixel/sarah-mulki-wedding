@@ -77,7 +77,7 @@
 
         <section id="gift-section" class="section-content">
             <h2>Wedding Gift</h2>
-            <p>Your presence at our wedding is the greatest gift of all.</p>p
+            <p>Your presence at our wedding is the greatest gift of all.</p>
             <p>However, if you wish to honor us with a gift, a monetary gift would be greatly appreciated.</p>
             <div class="bank-info">
                 <h3>Bank BCA</h3>
@@ -102,9 +102,11 @@
         </section>
 
         <section id="rsvp-section" class="section-content">
-            <h2>Kindly Confirm &</h2>
-            <p>write your wishes for us</p>
-            <form id="rsvp-form">
+            <h2>Kindly Confirm & Write Your Wishes For Us</h2>
+
+            <div class="event-box rsvp-box">
+                <h3>Formulir Konfirmasi Kehadiran (RSVP)</h3>
+                <form id="rsvp-form">
                 <label for="guest-name">Nama Anda:</label>
                 <input type="text" id="guest-name" name="name" required>
 
@@ -118,10 +120,20 @@
                 <label for="message">Pesan / Doa Terbaik:</label>
                 <textarea id="message" name="message" rows="4"></textarea>
 
-                <button type="submit">Kirim Konfirmasi</button>
+                <button type="submit" id="rsvp-submit-btn">Kirim Konfirmasi</button>
             </form>
-            <pid="rsvp-message" style="color: green; margin-top: 15px; display: none;">Terima kasih, konfirmasi Anda telah terkirim!</p>
-        </section>
+            <p id="rsvp-message" style="color: green; margin-top: 15px; display: none;">Terima kasih, konfirmasi Anda telah terkirim!</p>
+            </div>
+
+            <div class="event-box guestbook-box">
+            <h3>Ucapan & Doa Terbaik</h3>
+            <div id="guest-messages" class="message-list">
+                <p>Memuat pesan...</p>
+        </div>
+        <button id="load-messages-btn" class="secondary-btn" style="margin-top: 20px;">Muat Ulang Pesan</button>
+        <p class="note" style="font-size: 0.8em; opacity: 0.7;">Pesan yang baru dikirim akan muncul setelah dimuat ulang.</p>
+    </div>
+</section>
 
     </main>
 
