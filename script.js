@@ -179,7 +179,54 @@ const GUESTBOOK_API_URL = "https://script.google.com/macros/s/AKfycbxVhd_RWOR0iO
 function loadGuestMessages() {
     const messageContainer = document.getElementById('guest-messages');
     messageContainer.innerHTML = '<p>Sedang memuat pesan...</p>'; // Tampilkan status loading
+// --- 6. Observer untuk Animasi On Scroll (Slide-In) ---
 
+function setupScrollAnimation() {
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            // Jika elemen terlihat di viewport
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Hentikan pemantauan setelah animasi terpicu
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        // Root: null (viewport), Threshold: 0.1 (memicu saat 10% elemen terlihat)
+        threshold: 0.1
+    });
+
+    // Ambil semua elemen yang memiliki kelas 'hidden-animate' (yaitu bride & groom)
+    const elementsToAnimate = document.querySelectorAll('.hidden-animate');
+    
+    // Mulai pemantauan untuk setiap elemen
+    elementsToAnimate.forEach(el => {
+        observer.observe(el);
+    });
+}
+
+
+// Modifikasi Logika Pembukaan Undangan: Panggil setupScrollAnimation() setelah konten utama muncul
+document.getElementById('open-invitation-btn').addEventListener('click', function() {
+    const landingScreen = document.getElementById('landing-screen');
+    const mainContent = document.getElementById('main-content');
+    const openingPage = document.getElementById('opening-page');
+
+    landingScreen.style.opacity = '0';
+    
+    setTimeout(() => {
+        landingScreen.style.display = 'none';
+        mainContent.classList.remove('hidden');
+        openingPage.style.opacity = '1';
+
+        setTimeout(() => {
+            openingPage.scrollIntoView({ behavior: 'smooth' });
+            loadGuestMessages(); 
+            setupScrollAnimation(); // Panggil observer setelah konten utama terlihat
+        }, 500); 
+
+    }, 1000); 
+});
     // Lakukan fetching data dari API
     fetch(GUESTBOOK_API_URL)
         .then(response => {
