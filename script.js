@@ -1,5 +1,5 @@
 // Tanggal Pernikahan: Sesuaikan dengan tanggal, bulan, tahun, dan waktu yang sebenarnya
-const weddingDate = new Date("Jan 12, 2026 08:00:00").getTime();
+const weddingDate = new Date("Jan 26, 2026 08:00:00").getTime();
 
 // --- A. Fungsi Mengambil Nama Tamu dari URL ---
 function getGuestName() {
@@ -30,7 +30,7 @@ document.getElementById('open-invitation-btn').addEventListener('click', functio
     
     setTimeout(() => {
         landingScreen.style.display = 'none'; // Hilangkan display setelah transisi
-        mainContent.classList.remove('hidden');
+        mainContent.classList.add('visible');
         
         // 2. Tampilkan Opening Page dengan transisi Opacity
         openingPage.style.opacity = '1';
